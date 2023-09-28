@@ -27,13 +27,54 @@ Hvilken datatype er dette? </p>
     <p>test = "testverdi"</p>
 
 
-
 </div>
-
 )
-
-
 }
+
+function DeloppgaveC() {
+
+    return (
+        <div className='deloppgave'> 
+        <h1> DeloppgaveC </h1>
+        <p>Hva skriver du dersom du vil regne ut 2 * 3 og sette resultatet inn i
+variabelen produkt? </p>
+<p>let produkt = 0 produkt = 2 * 3 </p>
+        </div>
+
+
+    )
+}
+
+function DeloppgaveD() {
+
+    return (
+        <div className='deloppgave'> 
+        <h1> DeloppgaveD </h1>
+        <p>Hva skriver du dersom du vil regne ut verdien av brøken 2/3 og sette
+resultatet inn i variabelen broek? (Det kan være lurt å unngå
+skandinaviske bokstavar som æ, ø og å i variabelnavn.)
+ </p>
+ <p>const d = math.fraction('2/3') const e = math.number(d) </p>
+        </div>
+
+ )
+}
+
+function DeloppgaveE() {
+
+    return (
+        <div className='deloppgave'> 
+        <h1>DeloppgaveE </h1>
+        <p>Lag et program der du tester om alle kommandoene over fungerer ved
+å bruke console.log() til å skrive ut innholdet av variablene. </p>
+      <p> </p>
+        
+        </div>
+        
+    )
+}
+
+
 
 function Oppgave1() {
 
