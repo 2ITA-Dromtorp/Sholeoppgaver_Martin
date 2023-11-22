@@ -1,10 +1,17 @@
+// App.js
+
 import React, { useState } from 'react';
 import CourseList from './CourseList';
 import RegistrationForm from './RegistrationForm';
+import './App.css';
 
 
 function App() {
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
+  const handleCourseSelection = (course) => {
+    setSelectedCourse(course);
+  };
   const coursesData = [
     {
       id: 1,
@@ -28,14 +35,27 @@ function App() {
     },
   ];
 
-  const [selectedCourse, setSelectedCourse] = useState(null);
-
-
   return (
-    <div >
-      <h1>Voksenopplæring på Drømtorp VGS</h1>
-      <CourseList courses={coursesData} onCourseSelect={handleCourseSelection} />
-      {selectedCourse && <RegistrationForm course={selectedCourse} />}
+    <div className='container'>
+      <div className='header'>
+        <h1>Voksenopplæring på Drømtorp VGS</h1>
+      </div>
+      <div className='middle'>
+          <div className='LeftMid'>
+           
+          </div>
+          <div className='RightMid'>
+           <div className='Norsk'>
+            Norsk
+           </div>
+           <div className='Heimkunskap'>
+            Heimkunskap
+           </div>
+
+          </div>
+          
+          
+      </div>
     </div>
   );
 }
