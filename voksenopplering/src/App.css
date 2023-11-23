@@ -56,49 +56,56 @@
   align-items: center;
   display: flex;
   justify-content: space-around;
-  height: 100vh;
+  height: 83vh;
   border: solid black 2px;
   background-color: blue;
 }
 
 .LeftMid {
+  padding: 0;
   align-items: center;
-  display: flex;
+  flex-direction: column;
+
+  display: flex;  
   justify-content: space-around;
-  height: 100vh;
-  width: 100vh;
+  height: 100%;
+  width: 100%;
   background-color: yellow;
  
 }
 
 .RightMid {
+  padding: 0;
   align-items: center;
+  flex-direction: column;
+
   display: flex;
   justify-content: space-around;
-  height: 100vh;
-  width: 100vh; 
+  height: 100%;
+  width: 100%; 
   background-color: green;
  
-}
-
-.Heimkunskap {
-  display: flex;
-  flex-direction: column;
-  border: solid black 2px;
-  height: 100vh;
-  width: 100vh; 
-  justify-content: space-around;
-  align-items: center;
-  margin: 10px;
 }
 
 .Norsk {
   display: flex;
   flex-direction: column;
   border: solid black 2px;
-  height: 100vh;
-  width: 100vh; 
-  margin: 10px;
+  height: 200%;
+  width: 50%; 
   justify-content: space-around;
   align-items: center;
+  margin-top: 15%;
 }
+
+.Heimkunskap {
+  display: flex;
+  flex-direction: column;
+  border: solid black 2px;
+  height: 200%;
+  width: 50%; 
+  justify-content: space-around;
+  align-items: center;
+  margin: 10vw;
+}
+
