@@ -40,72 +40,81 @@
 .container {
   display: flex;
   flex-direction: column;
- height: 100%;
- border: solid #282c34 2px;
- background-color: red;
+  height: 100vh;
+  border: 2px solid #3498db;
+  background-color: #ecf0f1;
 }
+
 .header {
   align-items: center;
   display: flex;
-  justify-content: space-around;
-  height: 25%;
-  border: solid black 2px;
-
+  justify-content: space-between;
+  height: 8vh;
+  border: 2px solid #2980b9;
+  padding: 1em;
+  background-color: #3498db;
+  color: #fff; /* Text color for better contrast */
 }
+
 .middle {
-  align-items: center;
   display: flex;
-  justify-content: space-around;
-  height: 83vh;
-  border: solid black 2px;
-  background-color: blue;
+  height: 84vh;
+  border: 2px solid #2980b9;
 }
 
-.LeftMid {
-  padding: 0;
-  align-items: center;
-  flex-direction: column;
-
-  display: flex;  
-  justify-content: space-around;
-  height: 100%;
-  width: 100%;
-  background-color: yellow;
- 
-}
-
+.LeftMid,
 .RightMid {
-  padding: 0;
-  align-items: center;
-  flex-direction: column;
-
-  display: flex;
-  justify-content: space-around;
-  height: 100%;
-  width: 100%; 
-  background-color: green;
- 
-}
-
-.Norsk {
+  flex: 1;
+  padding: 1em;
   display: flex;
   flex-direction: column;
-  border: solid black 2px;
-  height: 200%;
-  width: 50%; 
   justify-content: space-around;
   align-items: center;
-  margin-top: 15%;
 }
 
+.Norsk,
 .Heimkunskap {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  border: solid black 2px;
-  height: 200%;
-  width: 50%; 
+  border: 2px solid #2980b9;
   justify-content: space-around;
   align-items: center;
-  margin: 10vw;
+  margin: 1em;
+  padding: 1.5em;
+  width: 25%;
+  border-radius: 8px;
+  background-color: #d1e8f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.Norsk:hover,
+.Heimkunskap:hover {
+  background-color: #aed6f1; /* Lighter blue-gray on hover */
+}
+
+
+.login-button {
+  padding: 10px 20px;
+  background-color: #27ae60; /* Green color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-button:hover {
+  background-color: #219d54; /* Darker green on hover */
+}
+
+
+
+.confirmation-message {
+  background-color: #d4edda; /* Green background color, you can change it */
+  color: #155724; /* Dark green text color, you can change it */
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #c3e6cb; /* Border color, you can change it */
+  border-radius: 5px;
+}

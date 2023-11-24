@@ -1,71 +1,73 @@
-// App.js
-
 import React, { useState } from 'react';
-import CourseList from './CourseList';
-import RegistrationForm from './RegistrationForm';
-import './App.css';
 import { useNavigate } from 'react-router-dom';
-
+import LoginPopup from './LoginPopup';
+import './App.css';
 
 function Home() {
-  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [confirmationMessage, setConfirmationMessage] = useState(''); // Add state for confirmation message
+  const navigate = useNavigate();
 
-  let navigate = useNavigate()
-
-  const handleCourseSelection = (course) => {
-    setSelectedCourse(course);
+  const handleLogin = (enteredUsername, enteredFullName) => {
+    setIsLoggedIn(true);
+    setUsername(enteredUsername);
+    setFullName(enteredFullName);
+    setShowLogin(false);
+    setConfirmationMessage(`Welcome, ${enteredFullName}! You are now logged in.`);
   };
-  const coursesData = [
-    {
-      id: 1,
-      title: 'Grunnleggende datakunnskap',
-      description: 'Innføring i datamaskinbruk og grunnleggende programvare.',
-    },
-    {
-      id: 2,
-      title: 'Norsk',
-      description: 'Forbedre skriftlig og muntlig norsk ferdigheter.',
-    },
-    {
-      id: 3,
-      title: 'Heimkunnskap',
-      description: 'Lære om matlaging, husarbeid og generell husholdning.',
-    },
-    {
-      id: 4,
-      title: 'Kroppsøving',
-      description: 'Fysisk trening og helsefremmende aktiviteter.',
-    },
-  ];
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUsername('');
+    setFullName('');
+    setConfirmationMessage(''); // Clear confirmation message on logout
+  };
+
+  const loginButtonText = isLoggedIn ? `Welcome, ${fullName}!` : 'Login';
 
   return (
+    
+
+    
+      
     <div className='container'>
       <div className='header'>
         <h1>Voksenopplæring på Drømtorp VGS</h1>
+        {isLoggedIn ? (
+          <div>
+            <span>{fullName}</span>
+            <button className="login-button" onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <button className="login-button" onClick={() => setShowLogin(true)}>
+            {isLoggedIn ? `Welcome, ${fullName}!` : 'Login'}
+          </button>
+        )}
       </div>
+      {confirmationMessage && <p className="confirmation-message">{confirmationMessage}</p>}
+
       <div className='middle'>
-          <div className='LeftMid'>
+        <div className='LeftMid'>
           <div className='Norsk' onClick={() => navigate('/info/Grunnleggende datakunnskap')}>
-          Grunnleggende datakunnskap
-           </div>
-          <div className='Heimkunskap'onClick={() => navigate('/info/Kroppsøving')}>
-          Kroppsøving
-           </div>
+            Grunnleggende datakunnskap
           </div>
-          <div className='RightMid'>
-
-           <div className='Norsk'onClick={() => navigate('/info/norsk')}>
+          <div className='Heimkunskap' onClick={() => navigate('/info/Kroppsøving')}>
+            Kroppsøving
+          </div>
+        </div>
+        <div className='RightMid'>
+          <div className='Norsk' onClick={() => navigate('/info/norsk')}>
             Norsk
-           </div> 
-           <div className='Heimkunskap'onClick={() => navigate('/info/Heimkunskap')}>
-            Heimkunskap
-           </div>
-           
-
           </div>
-          
-          
+          <div className='Heimkunskap' onClick={() => navigate('/info/Heimkunskap')}>
+            Heimkunskap
+          </div>
+        </div>
       </div>
+      {showLogin && <LoginPopup onClose={() => setShowLogin(false)} onLogin={handleLogin} />}
     </div>
   );
 }
