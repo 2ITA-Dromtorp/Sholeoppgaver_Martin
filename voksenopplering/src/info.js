@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import json from './fag';
-import FormPopup from './FormPopup';
+import FormPopup from './FormPopup.js';
 import './FormPopup.css';
 
 const Info = () => {
@@ -45,31 +45,43 @@ const Info = () => {
     transition: 'background-color 0.3s ease-in-out',
   };
 
+  const receivedButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: '#27ae60', // Change color for "Form Received"
+  };
+
   const [showForm, setShowForm] = useState(false);
+  const [formReceived, setFormReceived] = useState(false);
 
   const handleFormSubmit = (formData) => {
     // Handle form submission logic here
     console.log('Form submitted:', formData);
+    setFormReceived(true);
   };
 
   return (
     <div style={infoContainerStyle}>
-      <div>
-        <Link to="/">Home</Link>
-      </div>
+      <Link to="/" style={buttonStyle}>
+        Home
+      </Link>
+
       <div style={boxStyle}>
         <h1 style={titleStyle}>{json.kursinfo[jsonIndex].kursnavn}</h1>
         <p>{json.kursinfo[jsonIndex].info}</p>
-        <button
-          style={buttonStyle}
-          onClick={() => setShowForm(true)}
-          onMouseOver={(e) => (e.target.style.backgroundColor = '#2980b9')}
-          onMouseOut={(e) => (e.target.style.backgroundColor = '#3498db')}
-        >
-          Open Form
-        </button>
+        {!formReceived ? (
+          <button
+            style={buttonStyle}
+            onClick={() => setShowForm(true)}
+          >
+            {showForm ? 'Close Form' : 'Open Form'}
+          </button>
+        ) : (
+          <button style={receivedButtonStyle} disabled>
+            Du er meldt på
+          </button>
+        )}
       </div>
-      {showForm && <FormPopup onClose={() => setShowForm(true)} onSubmit={handleFormSubmit} />}
+      {showForm && <FormPopup onClose={() => setShowForm(false)} onSubmit={handleFormSubmit} />}
     </div>
   );
 };

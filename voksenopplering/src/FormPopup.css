@@ -1,6 +1,6 @@
 /* FormPopup.css */
 
-.form-popup {
+.form-main-popup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -11,19 +11,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .form-popup label {
+  .form-main-popup label {
     display: block;
     margin-bottom: 10px;
   }
   
-  .form-popup input {
+  .form-main-popup input {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     box-sizing: border-box;
   }
   
-  .form-popup button {
+  .form-main-popup button {
     padding: 10px 20px;
     background-color: #3498db;
     color: #fff;
@@ -33,7 +33,7 @@
     transition: background-color 0.3s ease-in-out;
   }
   
-  .form-popup button:hover {
+  .form-main-popup button:hover {
     background-color: #2980b9;
   }
   

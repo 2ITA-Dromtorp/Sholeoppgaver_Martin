@@ -28,8 +28,8 @@ function FormPopup({ onClose, onSubmit }) {
   };
 
   return (
-    <div className="form-popup">
-      <span className="close-button" onClick={onClose}>&times;</span>
+    <div className="form-main-popup">
+      <span className="close-button" onClick={()=>onClose()}>&times;</span>
       <h2>Form</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>

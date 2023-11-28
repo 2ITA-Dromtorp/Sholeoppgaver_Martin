@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import LoginPopup from './LoginPopup';
 import FormPopup from './FormPopup'; // Import the FormPopup component
 import './App.css';
+import Norskbilde from './images/norskimage.png'
+import Databilde from './images/Grunnleggende-datakunnskap.png'
+import Kråpsøving from './images/kroppsoving.webp'
+import Heimkunskap from './images/Heimkunskap.jpg'
 
 function Home() {
   const [showLogin, setShowLogin] = useState(false);
@@ -51,9 +55,7 @@ function Home() {
               <button className="login-button" onClick={() => setShowLogin(true)}>
                 {loginButtonText}
               </button>
-              <button className="form-button" onClick={() => setShowForm(true)}>
-                Open Form
-              </button>
+             
             </>
           )}
         </div>
@@ -63,17 +65,21 @@ function Home() {
       <div className='middle'>
         <div className='LeftMid'>
           <div className='Norsk' onClick={() => navigate('/info/Grunnleggende datakunnskap')}>
+          <img src={Databilde} width={164} height={119}/>
             Grunnleggende datakunnskap
           </div>
           <div className='Heimkunskap' onClick={() => navigate('/info/Kroppsøving')}>
+          <img src={Kråpsøving} width={164} height={119}/>
             Kroppsøving
           </div>
         </div>
         <div className='RightMid'>
           <div className='Norsk' onClick={() => navigate('/info/norsk')}>
+            <img src={Norskbilde}/>
             Norsk
           </div>
           <div className='Heimkunskap' onClick={() => navigate('/info/Heimkunskap')}>
+          <img src={Heimkunskap} width={164} height={119}/>
             Heimkunskap
           </div>
         </div>
