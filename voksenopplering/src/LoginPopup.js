@@ -9,6 +9,7 @@ function LoginPopup({ onClose, onLogin }) {
     const handleclick = () => {
         onLogin(password, username)
     }
+    
   return (
     <div className="login-popup">
       <span className="close-button" onClick={onClose}>&times;</span>
