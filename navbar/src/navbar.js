@@ -12,7 +12,7 @@ const Navbar = () => {
         <li><a href="/">Select</a></li>
         <li><a href="/about">Update</a></li>
         <li><a href="/contact">Insert</a></li>
-        <li><a href="/services">Delete</a></li>
+        <li><a href="/services">Delite</a></li>
       </ul>
     </nav>
   );
