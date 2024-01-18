@@ -1,0 +1,80 @@
+.table-container {
+    margin: 20px;
+   margin-top: 100px;
+    padding-top: 100px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px; /* Smaller padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em; /* Adjust font size as needed */
+}
+
+.styled-table th, .styled-table td {
+    border: 1px solid #ddd;
+    padding: 6px; /* Smaller padding */
+    text-align: center;
+}
+
+.styled-table th {
+    background-color: #f2f2f2;
+}
+
+
+/* Update.css */
+
+/* Update.css */
+
+.UpdateForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .UpdateForm div {
+    margin-bottom: 15px;
+  }
+  
+  .UpdateForm label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .UpdateForm input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 3px;
+  }
+  
+  .UpdateForm .Button {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px; /* Adjusted padding to make the button bigger */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .UpdateForm .Button:hover {
+    background-color: #45a049;
+  }
+  
+
+
+ .Button {
+    width: 100%;
+ }
