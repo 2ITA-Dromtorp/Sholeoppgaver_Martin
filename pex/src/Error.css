@@ -1,0 +1,86 @@
+/* Error.css */
+
+.error-log-container {
+    font-family: 'Arial, sans-serif';
+    max-width: 600px;
+
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    height: 70vh;
+    max-height: fit-content;
+  }
+  
+  .error-log-header {
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .error-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .ticket-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .ticket-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    word-break: break-all;
+  }
+  
+  .resolve-button,
+  .remove-button {
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #28A745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .remove-button {
+    background-color: #dc3545;
+    margin-left: 10px;
+  }
+  
+ 
+
+.edit-button {
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #28A745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  
