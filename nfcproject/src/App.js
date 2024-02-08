@@ -1,10 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import './quiz.js';
+import Sex from './quiz.js';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-   <p></p>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Outlet />}>
+          <Route index element={<Sex />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

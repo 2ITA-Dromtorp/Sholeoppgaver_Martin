@@ -1,0 +1,29 @@
+/* ProgressBar.css */
+.progress-container {
+    position: fixed; /* or absolute */
+    top: 50px; /* Adjust top position to create space below the title */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    z-index: 1000; /* Ensure the progress bar is above other content */
+    margin-top: 20px; /* Add margin to create space below the title */
+  }
+  .progress-bar {
+    height: 100%;
+    background-color: #2196f3;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+  }
+  

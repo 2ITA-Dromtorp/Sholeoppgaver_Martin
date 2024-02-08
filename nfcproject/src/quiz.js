@@ -1,40 +1,46 @@
 // Quiz.js
 import React, { useState, useEffect } from 'react';
-import Congratulations from './Congratulations.js';
+import Congratulations from './Congratulations';
+import ProgressBar from './ProgressBar'; // Import the ProgressBar component
 import './Quiz.css';
 
 const Quiz = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(-1); // Start at -1 to show the start screen
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [cheatMode, setCheatMode] = useState(false);
   const [password, setPassword] = useState('');
   const [timer, setTimer] = useState(15);
   const [timeUp, setTimeUp] = useState(false);
+  const [quizStarted, setQuizStarted] = useState(false);
+  const [incorrectAnswers, setIncorrectAnswers] = useState([]); // Track incorrect answers
   const correctPassword = 'Martin';
 
-  const questions = [
-    {
-      question: 'What does HTML stand for?',
-      options: ['Hyper Text Markup Language', 'Highly Typed Modern Language', 'Hyperlink and Text Markup Language', 'Home Tool Markup Language'],
-      correctAnswer: 'Hyper Text Markup Language',
-    },
-    {
-      question: 'Which programming language is often used for building web applications?',
-      options: ['Java', 'Python', 'JavaScript', 'C#'],
-      correctAnswer: 'JavaScript',
-    },
-    {
-      question: 'What is the purpose of CSS?',
-      options: ['To structure web pages', 'To style web pages', 'To provide interactivity', 'To handle server-side logic'],
-      correctAnswer: 'To style web pages',
-    },
-  ];
+  useEffect(() => {
+    // Fetch questions from JSON file
+    fetch('/api/questions')
+      .then(response => response.json())
+      .then(data => {
+        console.log("Yoho") // Ensure questions are fetched correctly
+        console.log(data);
+        setQuestions(data);
+      })
+      .catch(error => console.error('FEIL:', error));
+  }, []);
+
+  setTimeout(() => window.close(), 30 * 1000);
 
   const handleAnswerClick = (selectedAnswer) => {
-    if (!cheatMode && currentQuestion !== -1) {
+    if (!cheatMode) {
       if (selectedAnswer === questions[currentQuestion].correctAnswer) {
         setScore(score + 1);
+      } else {
+        // Store incorrect answer and its correct counterpart
+        setIncorrectAnswers(prevAnswers => [...prevAnswers, {
+          question: questions[currentQuestion].question,
+          correctAnswer: questions[currentQuestion].correctAnswer
+        }]);
       }
     }
 
@@ -44,6 +50,7 @@ const Quiz = () => {
       setCurrentQuestion(nextQuestion);
       setTimer(15);
     } else {
+      console.log(" 1")
       setQuizCompleted(true);
     }
   };
@@ -65,14 +72,11 @@ const Quiz = () => {
     }
   };
 
-  const handleStartQuiz = () => {
-    setCurrentQuestion(0);
-  };
-
   useEffect(() => {
+    if (quizStarted === false) return
     let timerId;
 
-    if (timer > 0 && !quizCompleted && !cheatMode && currentQuestion !== -1) {
+    if (timer > 0 && !quizCompleted && !cheatMode) {
       timerId = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
       }, 1000);
@@ -83,22 +87,41 @@ const Quiz = () => {
     return () => {
       clearInterval(timerId);
     };
-  }, [timer, quizCompleted, cheatMode, currentQuestion]);
+  }, [timer, quizCompleted, cheatMode, quizStarted]);
+
+  useEffect(() => {
+    if (questions.length > 0 && currentQuestion === questions.length) {
+      // Quiz is completed, show congratulations 
+      console.log(currentQuestion, questions.length)
+      setQuizCompleted(true);
+    } else {
+      setQuizCompleted(false);
+    }
+  }, [currentQuestion, questions]);
 
   return (
     <div className={`quiz-container${timeUp ? ' time-up' : ''}`}>
-      <h1>IT Quiz</h1>
+      <h1 id="">IT Quiz</h1>
 
-      {currentQuestion === -1 && !quizCompleted && (
-        <button onClick={handleStartQuiz}>Start Quiz</button>
-      )}
+      {!quizCompleted && !quizStarted ? (
+        <>
+          <button onClick={() => {
+            setQuizStarted(true);
+            for (let i = 0; i < 100; i++) console.log("funker ")
+          }}>
+            Start quiz
+          </button>
+        </>
+      ) : undefined}
 
-      {!quizCompleted && currentQuestion !== -1 && !cheatMode && !timeUp ? (
+      {quizStarted && !quizCompleted && currentQuestion !== -1 && !cheatMode && !timeUp && questions.length > 0 ? (
         <div>
           <div className="timer-container">Time: {timer}s</div>
+          <ProgressBar currentQuestion={currentQuestion} totalQuestions={questions.length} /> {/* Include ProgressBar component */}
+          <h2>{questions[currentQuestion].question}</h2>
           <ul>
             {questions[currentQuestion].options.map((option, index) => (
-              <li key={index} onClick={() => handleAnswerClick(option)}>
+              <li className='' key={index} onClick={() => handleAnswerClick(option)}>
                 {option}
               </li>
             ))}
@@ -116,20 +139,8 @@ const Quiz = () => {
         </div>
       )}
 
-      {!quizCompleted && currentQuestion !== -1 && (
-        <div>
-          <h2>{questions[currentQuestion].question}</h2>
-          {currentQuestion !== -1 && (
-            <div className="timer-container">Time: {timer}s</div>
-          )}
-          {cheatMode && (
-            <p>The correct answer is: {questions[currentQuestion].correctAnswer}</p>
-          )}
-        </div>
-      )}
-
-      {quizCompleted && (
-        <Congratulations score={score} totalQuestions={questions.length} />
+      {quizCompleted && !timeUp && (
+        <Congratulations score={score} totalQuestions={questions.length} incorrectAnswers={incorrectAnswers} /> /* Pass incorrect answers */
       )}
 
       {timeUp && currentQuestion !== -1 && (

@@ -2,7 +2,7 @@
 import React from 'react';
 import './Congratulations.css';
 
-const Congratulations = ({ score, totalQuestions }) => {
+const Congratulations = ({ score, totalQuestions, incorrectAnswers }) => {
   const isPerfectScore = score === totalQuestions;
 
   const inspiringQuotes = [
@@ -28,9 +28,22 @@ const Congratulations = ({ score, totalQuestions }) => {
           {getRandomQuote()}
         </p>
       ) : (
-        <p>
-          "Don't worry about failures, worry about the chances you miss when you don't even try." - Jack Canfield
-        </p>
+        <>
+          <p>
+            "Don't worry about failures, worry about the chances you miss when you don't even try." - Jack Canfield
+          </p>
+          <div className="incorrect-answers">
+            <h3>Incorrect Answers:</h3>
+            <ul>
+              {incorrectAnswers.map(({ question, correctAnswer }, index) => (
+                <li key={index}>
+                  <strong>Question:</strong> {question}<br />
+                  <strong>Correct Answer:</strong> {correctAnswer}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
       )}
     </div>
   );

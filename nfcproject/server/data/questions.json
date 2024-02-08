@@ -1,0 +1,46 @@
+[
+    {
+      "question": "What does HTML stand for?",
+      "options": ["Hyper Text Markup Language", "Highly Typed Modern Language", "Hyperlink and Text Markup Language", "Home Tool Markup Language"],
+      "correctAnswer": "Hyper Text Markup Language"
+    },
+    {
+      "question": "Which programming language is often used for building web applications?",
+      "options": ["Java", "Python", "JavaScript", "C#"],
+      "correctAnswer": "JavaScript"
+    },
+    {
+      "question": "What is the purpose of CSS?",    
+      "options": ["To structure web pages", "To style web pages", "To provide interactivity", "To handle server-side logic"],
+      "correctAnswer": "To style web pages"
+    },
+    
+      {
+        "question": "What does CSS stand for?",
+        "options": ["Cascading Style Sheets", "Creative Style Syntax", "Computer Style Sheets", "Coded Style System"],
+        "correctAnswer": "Cascading Style Sheets"
+      },
+      {
+        "question": "What is the purpose of JavaScript?",
+        "options": ["To style web pages", "To provide interactivity", "To handle server-side logic", "To structure web pages"],
+        "correctAnswer": "To provide interactivity"
+      },
+      {
+        "question": "What is the correct syntax for referring to an external script called 'script.js'?",
+        "options": ["<script src='script.js'>", "<script href='script.js'>", "<script ref='script.js'>", "<script name='script.js'>"],
+        "correctAnswer": "<script src='script.js'>"
+      },
+      {
+        "question": "Which symbol is used for single-line comments in JavaScript?",
+        "options": ["//", "/*", "*/", "#"],
+        "correctAnswer": "//"
+      },
+      {
+        "question": "What does API stand for?",
+        "options": ["Application Programming Interface", "Automated Programming Interface", "Application Program Interface", "Automated Program Interface"],
+        "correctAnswer": "Application Programming Interface"
+      }
+    ]
+    
+  
+  
