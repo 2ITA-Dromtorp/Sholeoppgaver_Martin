@@ -2,7 +2,7 @@
 import React from 'react';
 import './Congratulations.css';
 
-const Congratulations = ({ score, totalQuestions, incorrectAnswers }) => {
+const Congratulations = ({ score, totalQuestions, incorrectAnswers, onPlayAgain }) => {
   const isPerfectScore = score === totalQuestions;
 
   const inspiringQuotes = [
@@ -17,34 +17,37 @@ const Congratulations = ({ score, totalQuestions, incorrectAnswers }) => {
     return inspiringQuotes[randomIndex];
   };
 
+  const handlePlayAgain = () => {
+    onPlayAgain();
+  };
+
   return (
     <div className="congratulations-container">
       <h2>Congratulations!</h2>
       <p>Your IT Quiz is completed.</p>
       <p>Your score is: {score} out of {totalQuestions}</p>
 
-      {isPerfectScore ? (
-        <p>
-          {getRandomQuote()}
-        </p>
-      ) : (
-        <>
-          <p>
-            "Don't worry about failures, worry about the chances you miss when you don't even try." - Jack Canfield
-          </p>
-          <div className="incorrect-answers">
-            <h3>Incorrect Answers:</h3>
-            <ul>
-              {incorrectAnswers.map(({ question, correctAnswer }, index) => (
-                <li key={index}>
-                  <strong>Question:</strong> {question}<br />
-                  <strong>Correct Answer:</strong> {correctAnswer}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </>
+      {incorrectAnswers.length > 0 && (
+        <div>
+          <h3>Incorrect Answers:</h3>
+          <ul>
+            {incorrectAnswers.map((answer, index) => (
+              <li key={index}>
+                <strong>Question:</strong> {answer.question}<br />
+                <strong>Correct Answer:</strong> {answer.correctAnswer}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
+
+      {isPerfectScore ? (
+        <p>{getRandomQuote()}</p>
+      ) : (
+        <p>"Don't worry about failures, worry about the chances you miss when you don't even try." - Jack Canfield</p>
+      )}
+
+      <button onClick={handlePlayAgain}>Play Again</button>
     </div>
   );
 };

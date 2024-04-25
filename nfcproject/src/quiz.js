@@ -1,7 +1,6 @@
-// Quiz.js
 import React, { useState, useEffect } from 'react';
 import Congratulations from './Congratulations';
-import ProgressBar from './ProgressBar'; // Import the ProgressBar component
+import ProgressBar from './ProgressBar';
 import './Quiz.css';
 
 const Quiz = () => {
@@ -14,29 +13,26 @@ const Quiz = () => {
   const [timer, setTimer] = useState(15);
   const [timeUp, setTimeUp] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
-  const [incorrectAnswers, setIncorrectAnswers] = useState([]); // Track incorrect answers
+  const [incorrectAnswers, setIncorrectAnswers] = useState([]);
+
   const correctPassword = 'Martin';
 
   useEffect(() => {
-    // Fetch questions from JSON file
     fetch('/api/questions')
       .then(response => response.json())
       .then(data => {
-        console.log("Yoho") // Ensure questions are fetched correctly
-        console.log(data);
         setQuestions(data);
       })
-      .catch(error => console.error('FEIL:', error));
+      .catch(error => console.error('Error fetching questions:', error));
   }, []);
 
   setTimeout(() => window.close(), 30 * 1000);
 
-  const handleAnswerClick = (selectedAnswer) => {
+  const handleAnswerClick = (selectedAnswer) => { 
     if (!cheatMode) {
       if (selectedAnswer === questions[currentQuestion].correctAnswer) {
         setScore(score + 1);
       } else {
-        // Store incorrect answer and its correct counterpart
         setIncorrectAnswers(prevAnswers => [...prevAnswers, {
           question: questions[currentQuestion].question,
           correctAnswer: questions[currentQuestion].correctAnswer
@@ -50,9 +46,27 @@ const Quiz = () => {
       setCurrentQuestion(nextQuestion);
       setTimer(15);
     } else {
-      console.log(" 1")
       setQuizCompleted(true);
     }
+  };
+
+  const handlePlayAgain = () => {
+    setQuestions([]);
+    setCurrentQuestion(0);
+    setScore(0);
+    setQuizCompleted(false);
+    setCheatMode(false);
+    setPassword('');
+    setTimer(15);
+    setTimeUp(false);
+    setQuizStarted(false);
+    setIncorrectAnswers([]);
+    fetch('/api/questions')
+      .then(response => response.json())
+      .then(data => {
+        setQuestions(data);
+      })
+      .catch(error => console.error('Error fetching questions:', error));
   };
 
   const revealAnswer = () => {
@@ -73,7 +87,7 @@ const Quiz = () => {
   };
 
   useEffect(() => {
-    if (quizStarted === false) return
+    if (quizStarted === false) return;
     let timerId;
 
     if (timer > 0 && !quizCompleted && !cheatMode) {
@@ -91,37 +105,26 @@ const Quiz = () => {
 
   useEffect(() => {
     if (questions.length > 0 && currentQuestion === questions.length) {
-      // Quiz is completed, show congratulations 
-      console.log(currentQuestion, questions.length)
       setQuizCompleted(true);
-    } else {
-      setQuizCompleted(false);
     }
   }, [currentQuestion, questions]);
 
   return (
     <div className={`quiz-container${timeUp ? ' time-up' : ''}`}>
-      <h1 id="">IT Quiz</h1>
+      <h1>IT Quiz</h1>
 
       {!quizCompleted && !quizStarted ? (
-        <>
-          <button onClick={() => {
-            setQuizStarted(true);
-            for (let i = 0; i < 100; i++) console.log("funker ")
-          }}>
-            Start quiz
-          </button>
-        </>
-      ) : undefined}
+        <button onClick={() => setQuizStarted(true)}>Start quiz</button>
+      ) : null}
 
       {quizStarted && !quizCompleted && currentQuestion !== -1 && !cheatMode && !timeUp && questions.length > 0 ? (
         <div>
           <div className="timer-container">Time: {timer}s</div>
-          <ProgressBar currentQuestion={currentQuestion} totalQuestions={questions.length} /> {/* Include ProgressBar component */}
+          <ProgressBar currentQuestion={currentQuestion} totalQuestions={questions.length} />
           <h2>{questions[currentQuestion].question}</h2>
           <ul>
             {questions[currentQuestion].options.map((option, index) => (
-              <li className='' key={index} onClick={() => handleAnswerClick(option)}>
+              <li key={index} onClick={() => handleAnswerClick(option)}>
                 {option}
               </li>
             ))}
@@ -132,20 +135,24 @@ const Quiz = () => {
           {cheatMode ? (
             <button onClick={disableCheatMode}>Disable Cheat Mode</button>
           ) : (
-            <button onClick={revealAnswer} disabled={quizCompleted}>
-              Cheat Mode
-            </button>
+            <button onClick={revealAnswer} disabled={quizCompleted}>Cheat Mode</button>
           )}
         </div>
       )}
 
       {quizCompleted && !timeUp && (
-        <Congratulations score={score} totalQuestions={questions.length} incorrectAnswers={incorrectAnswers} /> /* Pass incorrect answers */
+        <Congratulations
+          score={score}
+          totalQuestions={questions.length}
+          incorrectAnswers={incorrectAnswers}
+          onPlayAgain={handlePlayAgain}
+        />
       )}
 
       {timeUp && currentQuestion !== -1 && (
         <div className="failure-screen">
           <h2>YOU HAVE FAILED</h2>
+          <button onClick={handlePlayAgain}>Play Again</button>
         </div>
       )}
     </div>
