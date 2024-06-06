@@ -1,4 +1,4 @@
- 
+import "../kvittering.css"
 
 export default function Kvittering() {
 

@@ -1,0 +1,13 @@
+body {
+    height: 100vh;
+}
+
+.kvitteringDiv {
+    background-color: white;
+    width: 50%;
+    height: fit-content;
+    padding: 2vh 10px 2vh 10px;
+    margin: 4vh auto;
+    border-radius: 10px;
+    text-align: center;
+  }

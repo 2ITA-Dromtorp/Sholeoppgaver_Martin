@@ -83,7 +83,6 @@ export default function Handlekurv() {
             firmaadresse,
             leveringssted
         }).then(response => {
-            console.log(response.data);
             sessionStorage.clear();
             sessionStorage.setItem("bestillingsNummer", response.data.bestillingsNummer);
             sessionStorage.setItem("data", response.data.data);
@@ -102,10 +101,9 @@ export default function Handlekurv() {
                     <h2>Total sum: {totalSum} kr</h2>
                 </div>
                 <div className='betalingsDiv'>
-                    <p onClick={betal}>Betal her:</p>
-                    <a className='betalingsKnapp' onClick={betal} href='#'>
-                        <img src='https://cdn-assets-cloud.frontify.com/s3/frontify-cloud-files-us/eyJwYXRoIjoiZnJvbnRpZnlcL2ZpbGVcLzd4S0w5VGFRTllOUXY1NGRCNVpZLnN2ZyJ9:frontify:m-Br4GDyYZXU4MDviU3OgRpo9n0wqlkyHVXUlv_q63k?width=370'/>
-                    </a>
+                    <button className='betalingsKnapp' onClick={betal} href='#'>
+                        betal
+                    </button>
                 </div>
             </div>
             <div className='pageContainer'>
@@ -121,7 +119,7 @@ export default function Handlekurv() {
                     <input id='betaling' placeholder='Betalingsmetode' type='text' value={formData.betaling} onChange={handleChange}></input>
                     <input id='firmaadresse' placeholder='Firmakontor adresse' type='text' value={formData.firmaadresse} onChange={handleChange}></input>
                     <input id='leveringssted' placeholder='Leveringssted' type='text' value={formData.leveringssted} onChange={handleChange}></input>
-                    <input type='submit'></input>
+                    <input className='handlekurvSubmit' type='submit' style={{width:"101%"}}></input>
                 </form>
                 <div className='itemContainer'>
                     {resultArray.map((item, index) => (

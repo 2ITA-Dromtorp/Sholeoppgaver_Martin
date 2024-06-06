@@ -33,7 +33,7 @@
         <div className='pageContainer'>
             <div className='itemContainer'>
                 {merchData.map((merch) => (
-                    <div className='item' id={merch.produktID2}><img className='itemImage' src={merch.bildeBane}/><h2>{merch.produktNavn}</h2><p>{merch.pris},-</p><p>{merch.antall} på lager</p><button id={merch.ID} className='bestillKnapp' onClick={(e) => bestill(e)}>Bestill</button></div>
+                    <div className='item' id={merch.produktID2}><img className='itemImage' src={merch.bildeBane}/><h2>{merch.produktNavn}</h2><p>{merch.pris},-</p>{merch.antall > 0 ? <p>{merch.antall} på lager</p> : <p>Ikke på lager.</p>}            {merch.antall > 0 ? <button id={merch.ID} className='bestillKnapp' onClick={(e) => bestill(e)}>Bestill</button> :null}</div>
                 ))}
             </div>
         </div>

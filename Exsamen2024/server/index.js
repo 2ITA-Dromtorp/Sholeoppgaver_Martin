@@ -11,7 +11,7 @@ const port = 3001;
 
 const dbConfig = {
   user: 'root',
-  password: 'root',
+  password: '',
   database: 'examen2024',
   host: 'localhost',
   port: 3306,
