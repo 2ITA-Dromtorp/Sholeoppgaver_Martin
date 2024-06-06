@@ -1,6 +1,6 @@
 .navBar {
     display: flex;
-    height: 12vh;
+    height: 9vh;
     width: 100vw;
     border-bottom: solid 1px gray;
     background-color: #001A2F;
@@ -36,7 +36,7 @@
   
   .logo {
     width: 32%;
-    height: 95%;
+    height: 100%;
     position: relative;
     right: -1vw;
   }

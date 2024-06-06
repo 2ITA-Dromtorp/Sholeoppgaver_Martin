@@ -9,10 +9,10 @@ import NavBar from './components/NavBar';
 function App() {
   return (
     <Router>
-          <NavBar />
+        <NavBar />
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<KantinePage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path='/handlekurv' element={<Handlekurv />}  />
         <Route path='/kvittering' element={<Kvittering />} />
       </Routes>
