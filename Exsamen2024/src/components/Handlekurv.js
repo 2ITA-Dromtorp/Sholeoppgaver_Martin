@@ -85,7 +85,7 @@ export default function Handlekurv() {
         }).then(response => {
             console.log(response.data);
             sessionStorage.clear();
-            sessionStorage.setItem("bestillingsID", response.data.bestillingsID);
+            sessionStorage.setItem("bestillingsNummer", response.data.bestillingsNummer);
             sessionStorage.setItem("data", response.data.data);
             sessionStorage.setItem("pris", response.data.pris);
             navigate('/kvittering');

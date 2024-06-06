@@ -11,7 +11,7 @@ const port = 3001;
 
 const dbConfig = {
   user: 'root',
-  password: '',
+  password: 'root',
   database: 'examen2024',
   host: 'localhost',
   port: 3306,
@@ -165,6 +165,9 @@ app.post('/betal', async (req, res) => {
     let nummerSjekkQuery = `SELECT MAX(bestillingsNummer) AS maxID FROM bestillinger`;
     const [rows] = await req.dbConnection.query(nummerSjekkQuery);
     const bestillingsNummer = rows[0].maxID;
+    console.log(bestillingsNummer)
+    
+
 
     if (!bestillingsNummer) {
       throw new Error('Kunne ikke hente bestillingsNummer fra databasen.');
