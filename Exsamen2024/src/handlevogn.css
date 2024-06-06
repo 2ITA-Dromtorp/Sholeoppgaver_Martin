@@ -1,0 +1,113 @@
+/* Container for the cart */
+.cartContainer {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 15px;
+    width: 300px;
+    margin-left: 20px;
+  }
+  
+  /* Title for the cart */
+  .cartContainer h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* List of cart items */
+  .cartContainer ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Individual cart item */
+  .cartContainer li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  /* Image of the cart item */
+  .cartImage {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  /* Container for item details */
+  .cartContainer li div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Name of the cart item */
+  .cartContainer li h3 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Price of the cart item */
+  .cartContainer li p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  /* Button to remove an item from the cart */
+  .cartContainer button {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  
+  .cartContainer button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Total price */
+  .cartContainer h3 {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  /* Order button */
+  .cartContainer .orderButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .cartContainer .orderButton:hover {
+    background-color: #45a049;
+  }
+  
+
+  .handlekurvForm {
+    width: 50%;
+    height: 50vh;
+    margin: 0 auto;
+    margin-top: 40vh;
+    /* border: 1px solid black; */
+  }
+
+  .handlekurvForm input {
+    width: 100%;
+    height: 10%;
+  }

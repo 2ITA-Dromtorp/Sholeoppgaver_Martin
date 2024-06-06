@@ -14,8 +14,23 @@ const dbConfig = {
   password: '',
   database: 'databaseprosjekt',
   host: 'localhost',
-  port: 3306
+  port: 3306,
+  connectionLimit: 100,
+
 };
+
+app.use(dbMiddleware);
+
+
+async function dbMiddleware(req, res, next) {
+  try {
+    req.dbConnection = await pool.getConnection();
+    next();
+  } catch (err) {
+    console.error('Failed to get a database connection!', err);
+    res.status(500).send('Internal Server Error');
+  }
+}
 
 const pool = mysql.createPool(dbConfig);
 
@@ -88,6 +103,49 @@ app.get('/utstyr', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+// Denne delen av koden håndterer POST-forespørselen til "/innlevering"
+// Den oppdaterer "Tilgjengelighet"-feltet for den valgte utstyrstilgangen i databasen
+
+app.post("/innlevering", async (req, res) => {
+  // Hent "bookedEquipment"-verdien fra requestbody
+  let bookedEquipment = req.body.bookedEquipment;
+
+  // Opprette oppdateringsforespørselen
+  const updateQuery = 'UPDATE utstyr SET Tilgjengelighet = 0 WHERE utstyrsID = ?';
+  const updateValues = [bookedEquipment];
+
+  // Kjør oppdateringsforespørselen mot databasen
+  console.log('Kjører oppdateringsforespørselen:', updateQuery, updateValues);
+  let [updateResult] = await req.dbConnection.query(updateQuery, updateValues);
+  console.log('Resultat av oppdatering:', updateResult);
+
+  // Send respons til klienten
+  res.send("Laanet er godkjent");
+});
+
+
+// Denne delen av koden håndterer POST-forespørselen til "/laan"
+// Den oppdaterer "Tilgjengelighet"-feltet for den valgte utstyrstilgangen i databasen
+
+app.post("/laan", async (req, res) => {
+  // Hent "bookedEquipment"-verdien fra requestbody
+  let bookedEquipment = req.body.bookedEquipment;
+
+  // Opprette oppdateringsforespørselen
+  const updateQuery = 'UPDATE utstyr SET Tilgjengelighet = 1 WHERE utstyrsID = ?';
+  const updateValues = [bookedEquipment];
+
+  // Kjør oppdateringsforespørselen mot databasen
+  console.log('Kjører oppdateringsforespørselen:', updateQuery, updateValues);
+  let [updateResult] = await req.dbConnection.query(updateQuery, updateValues);
+  console.log('Resultat av oppdatering:', updateResult);
+
+  // Send respons til klienten
+  res.send("Laanet er godkjent");
+  // Sender forespørsel og venter på svar fra serveren/backenden.
+});
+
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
